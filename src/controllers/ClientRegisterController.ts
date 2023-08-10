@@ -7,8 +7,8 @@ export class CreateClientController {
 
     const client = await prismaClient.client.create({
       data: {
-        name,
-        email,
+        name: name,
+        email: email,
       },
     });
 
