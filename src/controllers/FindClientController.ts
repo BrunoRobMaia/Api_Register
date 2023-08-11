@@ -3,11 +3,12 @@ import { prismaClient } from "../database/PrismaClient";
 
 export class FindeClientController {
   async handle(request: Request, response: Response) {
-    const { id } = request.params;
+    const { name, email } = request.params;
 
-    const client = await prismaClient.client.findFirst({
+    const client = await prismaClient.client.findMany({
       where: {
-        id,
+        name,
+        email,
       },
       include: {
         ClientType: true,
