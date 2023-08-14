@@ -11,31 +11,11 @@ datasource db {
 }
 
 model Client {
-  id         String       @id @default(uuid())
+  id         Int      @id @default(autoincrement())
   name       String
-  email      String       @unique
-  created_at DateTime     @default(now())
-  update_at  DateTime     @updatedAt
-  ClientType ClientType[]
+  email      String   @unique
+  created_at DateTime @default(now())
+  update_at  DateTime @updatedAt
 
   @@map("clients")
-}
-
-model Type {
-  id         String       @id @default(uuid())
-  name       String
-  ClientType ClientType[]
-
-  @@map("types")
-}
-
-model ClientType {
-  id String @id @default(uuid())
-
-  id_client String
-  client    Client @relation(fields: [id_client], references: [id])
-  id_type   String
-  type      Type   @relation(fields: [id_type], references: [id])
-
-  @@map("clients_types")
 }
