@@ -1,10 +1,10 @@
 import express from "express";
-import cors from "cors"; // Importe o pacote cors
+import cors from "cors";
 import { router } from "./routes";
 
 const app = express();
 
-app.use(cors()); // Adicione esta linha para habilitar o CORS
+app.use(cors());
 app.use(express.json());
 app.use(router);
 

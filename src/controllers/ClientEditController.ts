@@ -3,7 +3,7 @@ import { prismaClient } from "../database/PrismaClient";
 export class ClientEditController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
-    const { name, email } = request.body;
+    const { name, email, cpf } = request.body;
     try {
       console.log("Editing client with ID:", id);
       const existingClient = await prismaClient.client.findUnique({
@@ -17,6 +17,7 @@ export class ClientEditController {
         data: {
           name: name,
           email: email,
+          cpf: cpf,
         },
       });
       return response.json(updatedClient);
